@@ -17,6 +17,7 @@ typedef vector<string> VS;
 #define ZAD "moz"
 
 const int N = 1000;
+const int K = 1000;
 const int MAXV = 1000000000;
 
 Random RG;
