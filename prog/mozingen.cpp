@@ -18,7 +18,7 @@ typedef vector<string> VS;
 
 const int N = 1000;
 const int K = 1000;
-const int MAXV = 1000000000;
+const int MAXV = 1000;
 
 Random RG;
 
@@ -39,8 +39,12 @@ struct Test {
         RG.randomShuffle(vals.begin(), vals.end());
 
         printf("%d %d %d\n", n, k, l);
-        for (int i=0; i<(int)vals.size() - 1; i++)
+        for (int i=0; i<(int)vals.size() - 1; i++){
+            if (vals[i] > n)
+                fprintf(stderr, "wrong d_i\n"); 
             printf("%d ", vals[i]);
+
+        }
         printf("%d\n", vals.back());
     }
 };
@@ -55,8 +59,8 @@ Test full_random(int min_n, int max_n, int min_v, int max_v, int seed) {
     Test t;
 
     t.n = rand_range(min_n, max_n);
-    t.k = rand_range(0, max_v - min_v + 1);
-    t.l = rand_range(0, max_v - min_v + 1);
+    t.k = rand_range(1, max_v - min_v + 1);
+    t.l = rand_range(1, max_v - min_v + 1);
 
     for (int i=0; i<t.n; i++)
         t.vals.push_back(rand_range(min_v, max_v));
@@ -138,7 +142,7 @@ Test divisible() {
         t.vals.push_back(53);
     for (size_t i = 54; i < 57; i++)
         t.vals.push_back(i);
-    t.vals.push_back(1000000);
+    // t.vals.push_back(1000000);
 
     t.n = t.vals.size();
 
@@ -146,65 +150,65 @@ Test divisible() {
 }
 
 int main() {
-    std::vector<std::vector<Test>> tests = {
+    std::vector<std::vector<Test> > tests = {
             {
                     // n <= 20
-                    random_vals(1, 10, 20, 5, 5, 647326),
-                    random_vals(5, 8, 3, 12, 12, 234892),
-                    full_random(2, 20, 0, 10, 91723),
-                    full_random(2, 20, 0, 10, 82374),
-                    full_random(2, 20, 0, 10, 98234),
-                    full_random(2, 20, 0, 10, 89734),
-                    full_random(2, 20, 0, 20, 34763),
-                    full_random(2, 20, 0, 20, 37438),
-                    full_random(2, 20, 0, 20, 77234),
-                    full_random(2, 20, 0, 20, 35656),
+                    random_vals(1, 10, 20, 1, 1, 647326),
+                    random_vals(5, 8, 3, 1, 5, 234892),
+                    full_random(5, 20, 3, 5, 91723),
+                    full_random(10, 20, 10, 10, 82374),
+                    full_random(10, 20, 10, 10, 98234),
+                    full_random(10, 20, 10, 10, 89734),
+                    full_random(10, 20, 10, 10, 34763),
+                    full_random(10, 20, 10, 10, 37438),
+                    full_random(10, 20, 10, 10, 77234),
+                    full_random(10, 20, 10, 10, 35656),
             },
             {
-                    // n <= 1000
-                    random_vals(1000, 10, 4, 0, 10000, 987434),
-                    random_vals(1000, 100, 13, 0, 10000, 3458745),
-                    random_vals(1000, 50, 30, 0, 10000, 64475),
-                    random_vals(1000, 8, 3, 0, 1000, 457459),
-                    random_vals(1000, 20, 5, MAXV - 10000, MAXV, 77346),
-                    groups(1000, 40, 8, 0, 20000, 40, 50, 876876),
-                    groups(1000, 107, 300, 0, MAXV, 7, 50, 98243793),
+                    // n <= 500
+                    random_vals(500, 103, 403, 1, 213, 987434),
+                    random_vals(500, 100, 132, 1, 421, 3458745),
+                    random_vals(500, 506, 304, 1, 412, 64475),
+                    random_vals(500, 803, 350, 93, 100, 457459),
+                    random_vals(500, 202, 522, 300, 500, 77346),
+                    groups(1000, 40, 8, 1, 200, 40, 50, 876876),
+                    groups(1000, 107, 300, 1, MAXV, 7, 50, 98243793),
             },
             {
                     // n <= N
-                    random_vals(N, 100, 53, 0, N, 4684783),
-                    random_vals(N, 10000, 512, 0, N, 3438973),
-                    random_vals(N, 100000, 4321, 0, N, 79348579),
-                    random_vals(N, 20, 5, 0, 10*N, 4234877),
-                    random_vals(N, 1000, 316, 0, MAXV, 892374),
-                    random_vals(N, 10000, 72, 0, MAXV, 8374444),
-                    random_vals(N, 100000, 2048, 0, MAXV, 7738473),
-                    random_vals(N, MAXV, 1024, 0, MAXV/2, 774858),
-                    random_vals(N, 5, 1, 0, 100, 299394),
-                    random_vals(N, 216, 7, 0, N, 8899564),
+                    random_vals(N, 100, 53, 1, N, 4684783),
+                    random_vals(N, MAXV, 512, 1, N, 3438973),
+                    random_vals(N, MAXV, MAXV, 1, N, 79348579),
+                    random_vals(N, 20, 5, 1, N, 4234877),
+                    random_vals(N, MAXV, 316, 1, MAXV, 892374),
+                    random_vals(N, MAXV, 72, 1, MAXV, 8374444),
+                    random_vals(N, MAXV, MAXV, 1, MAXV, 7738473),
+                    random_vals(N, MAXV, 512, 1, MAXV/2, 774858),
+                    random_vals(N, 5, 1, 1, 100, 299394),
+                    random_vals(N, 216, 7, 1, N, 8899564),
 // 			random_vals(N, 1000, 1990, 0, 10*N, 323343),
 // 			random_vals(N, 10'000, 19'985, 0, 15*N, 368848),
 // 			random_vals(N, 10'000, 20'127, 0, 2*N, 23478932),
-                    groups(N, 10000, 543, 0, MAXV, 1000, 20000, 457934),
-                    groups(N, 234560, 600000, 0, MAXV, 37, 100000, 3353675),
+                    groups(N, MAXV, 543, 1, MAXV, 1000, MAXV, 457934),
+                    groups(N, MAXV, MAXV, 1, MAXV, 37, MAXV, 3353675),
             },
             {
                     // n <= N
-                    random_vals(N, 100, 53, 0, N, 456578),
-                    random_vals(N, 10000, 428, 0, N, 683465),
-                    random_vals(N, 100000, 23775, 0, N, 1349045),
-                    random_vals(N, 20, 5, 0, 10*N, 284566),
-                    random_vals(N, 1000, 316, 0, MAXV, 640335),
-                    random_vals(N, 10000, 72, 0, MAXV, 17477836),
-                    random_vals(N, 100000, 2048, 0, MAXV, 8468764),
-                    random_vals(N, MAXV, 1024, 0, MAXV/2, 384678),
-                    random_vals(N, 5, 1, 0, 100, 8328932),
-                    random_vals(N, 216, 7, 0, N, 25889),
+                    random_vals(N, 100, 53, 1, N, 456578),
+                    random_vals(N, MAXV, 428, 1, N, 683465),
+                    random_vals(N, MAXV, 23775, 1, N, 1349045),
+                    random_vals(N, 20, 5, 1, N, 284566),
+                    random_vals(N, MAXV, 316, 1, MAXV, 640335),
+                    random_vals(N, MAXV, 72, 1, MAXV, 17477836),
+                    random_vals(N, MAXV, 2048, 1, MAXV, 8468764),
+                    random_vals(N, MAXV, 1024, 1, MAXV/2, 384678),
+                    random_vals(N, 5, 1, 1, 100, 8328932),
+                    random_vals(N, 216, 7, 1, N, 25889),
 // 			random_vals(N, 79, 150, 0, 10*N, 3589),
-                    random_vals(N, 100000, 199985, MAXV - 15*N, MAXV, 3457444),
-                    random_vals(N, 175000, 350005, 120*N, 125*N, 7747748),
-                    groups(N, 2500, 248, 0, 4*N, 1000, 1000, 364534),
-                    groups(N, 2004560, 4600000, 0, MAXV, 10, 20000, 76754768),
+                    random_vals(N, MAXV, MAXV, MAXV -101, MAXV, 3457444),
+                    random_vals(N, MAXV, MAXV, 1, N, 7747748),
+                    groups(N, 250, 248, 1, N, MAXV, MAXV, 364534),
+                    groups(N, 460, 490, 1, MAXV, 10, MAXV, 76754768),
                     divisible(),
             },
     };
