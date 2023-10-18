@@ -1,0 +1,3 @@
+/Users/amso/CLionProjects/MOZ/cmake-build-debug/CMakeFiles/MOZ.dir
+/Users/amso/CLionProjects/MOZ/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/amso/CLionProjects/MOZ/cmake-build-debug/CMakeFiles/rebuild_cache.dir
