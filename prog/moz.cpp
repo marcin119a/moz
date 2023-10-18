@@ -1,7 +1,13 @@
+/*
+Rozwiązanie wzorcowe do zadania MOZ (Mozaika)
+Autor: Marcin Wierzbiński
+Data: 17.10.2022
+Opis: Dynamik w czasie O(n*k)
+*/
+
 #include <iostream>
 #include <vector>
 
-const int MOD = 1000000007;
 
 int main() {
     int n, k, q;
