@@ -1,5 +1,5 @@
 /*
- * Rozwiązanie brutalne rekurencyjne
+ * Rozwiązanie brutalne
  * Autor: Marcin Wierzbiński
  */
 #include <iostream>
