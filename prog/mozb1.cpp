@@ -1,8 +1,6 @@
 /*
-Rozwiązanie wzorcowe do zadania MOZ (Mozaika)
-Autor: Marcin Wierzbiński
+Rozwiązanie błedne do zadania MOZ (Mozaika)
 Data: 17.10.2022
-Opis: Dynamik w czasie O(n*k)
 */
 
 #include <iostream>
