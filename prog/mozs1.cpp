@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-const int MOD = 1000000007;
+#define MOD 1000000000
 
 int main() {
-    int n, k, q;
-    std::cin >> n >> k >> q;
+    int n, k;
+    std::cin >> n >> k;
 
     std::vector<int> d(n);
     for (int i = 0; i < n; i++) {
@@ -45,7 +45,7 @@ int main() {
 
     // Wyświetlenie wyniku
     for (int i = 0; i < n; i++) {
-        std::cout << size[d[i]]%q << " ";
+        std::cout << size[d[i]]%MOD << " ";
     }
     std::cout << std::endl;
 

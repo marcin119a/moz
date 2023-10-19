@@ -4,6 +4,7 @@
  */
 #include <iostream>
 #include <vector>
+#define MOD 1000000000
 
 int l;
 
@@ -44,7 +45,7 @@ int count_valid_sequences(int n, int k) {
 
 int main() {
     int n, k;
-    std::cin >> n >> k >> l;
+    std::cin >> n >> k;
 
     std::vector<int> d(n);
     for (int i = 0; i < n; i++) {
@@ -52,7 +53,7 @@ int main() {
     }
 
     for (int i = 0; i < n; i++) {
-        int result = count_valid_sequences(d[i], k) % l;
+        int result = count_valid_sequences(d[i], k) % MOD;
         std::cout << result << " ";
     }
 

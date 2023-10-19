@@ -5,11 +5,11 @@ Data: 17.10.2022
 
 #include <iostream>
 #include <vector>
-
+#define MOD 1000000000
 
 int main() {
-    int n, k, q;
-    std::cin >> n >> k >> q;
+    int n, k;
+    std::cin >> n >> k;
 
     std::vector<int> d(n);
     for (int i = 0; i < n; i++) {
@@ -29,7 +29,7 @@ int main() {
             dp[i][j] = dp[i - 1][j];
             if (j > 0) dp[i][j] += dp[i - 1][j - 1];
             if (j < k) dp[i][j] += dp[i - 1][j + 1];
-            dp[i][j] %= q;
+            dp[i][j] %= MOD;
         }
     }
 
@@ -38,7 +38,7 @@ int main() {
         wynik[i] = 0;
         for (int j = 0; j <= k; j++) {
             wynik[i] += dp[d[i]][j];
-            // wynik[i] %= q;
+            // wynik[i] %= MOD;
         }
     }
 
