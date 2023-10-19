@@ -1,52 +1,58 @@
- \documentclass[zad,zawodnik,utf8]{sinol}
-  \title{Mozaika}
-  \signature{jrad075}
-  \id{MOZ}
-  \etap{zadanie zaliczeniowe 1}
-  \day{} %to pole zostawiamy puste
-  \date{20.11.2023, 23:59:59}
-  \RAM{128}
-  \iomode{stdin}
-  \pagestyle{fancy}
-  \konkurs{Laboratorium z ASD}
-  \author{Marcin Wierzbiński, Antoni Mikos-Nuszkiewicz}
+\documentclass[zad,zawodnik,utf8]{sinol}
+\title{Mozaika}
+\signature{jrad075}
+\id{MOZ}
+\etap{zadanie zaliczeniowe 1}
+\day{} %to pole zostawiamy puste
+\date{20.11.2023, 23:59:59}
+\RAM{128}
+\iomode{stdin}
+\pagestyle{fancy}
+\konkurs{Laboratorium z ASD}
+\author{Marcin Wierzbiński, Antoni Mikos-Nuszkiewicz}
 
 \begin{document}
   \begin{tasktext}%
-Ostatnio Bajtazar uwielbia tworzyć kolorowe mozaiki z kafelków o pięknych kształtach, które składają się z $k$ detali. Jednak ma jedno ważne kryterium - każdy kafelek musi być połączony z sąsiednimi kafelkami i nie może różnić się ilością detali od sąsiednich kafelków o więcej niż jeden detal. Bajtazar uważa, że mozaiki spełniające ten warunek są najpiękniejsze.
+    Ostatnio Bajtazar uwielbia tworzyć kolorowe mozaiki z kafelków o pięknych kształtach. Każdy z kafelków może posiadać co najwyżej $k$ detali. Może się zdarzyć że kafelek posiada $0$ detali, co oznacza że nie ma żadnego kształtu.  Jednak Bajtazar ma jedno ważne kryterium - każdy kafelek musi być połączony z sąsiednimi kafelkami i nie może różnić się ilością detali od sąsiednich kafelków o więcej niż jeden detal. Bajtazar uważa, że mozaiki spełniające ten warunek są najpiękniejsze.
 
-Teraz chcemy dowiedzieć się, ile różnych takich najpiękniejszych mozaik o ustalonych długościach Bajtazar może ułożyć, przy zastrzeżeniu, że interesuje nas tylko reszta z dzielenia przez pewną liczbę q.
-
-
-\section{Wejście}
-W pierwszym wierszu wejścia podane są trzy liczby całkowite: $n$, $k$ oraz $q$ ($1 \le n, k, q \le 10^3$), reprezentujące odpowiednio liczbę różnych długości mozaik do sprawdzenia, ilość detali oraz wartość $q$ z treści zadania.
-
-W kolejnym wierszu znajduje się $n$ liczb całkowitych: $d_0, d_1, \ldots, d_{n-1}$, z zakresu $[1, n]$, które oznaczają kolejne pytania dotyczące liczby najpiękniejszych mozaik.
-
-\section{Wyjście}
-Twój program powinien wypisać
-na wyjście $n$ liczby całkowitych oddzielonych spacją, oznaczających liczbę najpiękniejszych mozaik modulo reszta z dzielenia $q$ dla kolejnych ustalonych długości.
+    Teraz chcemy dowiedzieć się, ile różnych takich najpiękniejszych mozaik o ustalonych długościach Bajtazar może ułożyć, przy zastrzeżeniu, że interesuje nas tylko reszta z dzielenia przez liczbę $10^{9}$.
 
 
-\makecompactexample
+    \section{Wejście}
+    W pierwszym wierszu wejścia podane są trzy liczby całkowite: $n$, $k$ ($1 \le n, k \le 10^4$), reprezentujące odpowiednio liczbę różnych długości mozaik do sprawdzenia, maksymalna liczba detali na kafelku.
 
-\bigskip
-\noindent
-\textbf{Wyjaśnienie do przykładu:}
-\begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{Długość $d_i$} & \textbf{Liczba detali $k$} & \textbf{Najpiękniejsze mozaiki} \\
-\hline
-1 & 1 & $(0), (1)$ \\
-\hline
-2 & 1 & $(0, 0), (0, 1), (1, 0), (1, 1)$ \\
-\hline
-3 & 1 & $(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)$ \\
-\hline
-\end{tabular}
-\end{table}
+    W kolejnym wierszu znajduje się $n$ liczb całkowitych: $d_0, d_1, \ldots, d_{n-1}$, z zakresu $[1, n]$, które oznaczają kolejne pytania dotyczące liczby najpiękniejszych mozaik.
+
+    \section{Wyjście}
+    Twój program powinien wypisać
+    na wyjście $n$ liczby całkowitych oddzielonych spacją, oznaczających liczbę najpiękniejszych mozaik modulo $10^{9}$ dla kolejnych ustalonych długości.
+
+
+    \makecompactexample
+
+    \twocol{natomiast dla danych wejściowych:
+
+    \includefile{../in/\ID1.in}}{poprawnym wynikiem jest:
+
+    \includefile{../out/\ID1.out}}
+
+    \bigskip
+    \noindent
+    \textbf{Wyjaśnienie do przykładu pierwszego:}
+    \begin{table}[h]
+      \centering
+      \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{długość $d_i$} & \textbf{maksymalna liczba detali $k$} & \textbf{najpiękniejsze mozaiki} \\
+        \hline
+        1 & 1 & $(0), (1)$ \\
+        \hline
+        2 & 1 & $(0, 0), (0, 1), (1, 0), (1, 1)$ \\
+        \hline
+        3 & 1 & $(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)$ \\
+        \hline
+      \end{tabular}
+    \end{table}
 
 
 
