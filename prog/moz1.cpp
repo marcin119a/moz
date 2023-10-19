@@ -1,17 +1,18 @@
 /*
-Rozwiązanie wzorcowe do zadania MOZ (Mozaika)
+Rozwiązanie prawie wzorcowe do zadania MOZ (Mozaika)
 Autor: Marcin Wierzbiński
 Data: 17.10.2022
-Opis: Dynamik w czasie O(n*k)
+Opis: Dynamik w czasie O(n*k) i pamięci O(n*k)
 */
 
 #include <iostream>
 #include <vector>
 
+#define MOD 1000000000
+
 
 int main() {
     int n, k;
-    int q = 1e9;
     std::cin >> n >> k;
 
     std::vector<int> d(n);
@@ -19,43 +20,36 @@ int main() {
         std::cin >> d[i];
     }
 
-    std::vector<int> dp(k + 1, 0);
-    std::vector<int> dp_prev(k + 1, 0);
+    std::vector<std::vector<int>> dp(n + 1, std::vector<int>(k + 1, 0));
     std::vector<int> wynik(n, 0);
 
     // Inicjalizacja dp
-    for (int i = 0; i <= k; i++) {
-        dp_prev[i] = 1;
+    for (int j = 0; j <= k; j++) {
+        dp[1][j] = 1;
     }
-    wynik[1] = k+1;
-
-
 
     for (int i = 2; i <= n; i++) {
         for (int j = 0; j <= k; j++) {
-            dp[j] = dp_prev[j];
-            if (j > 0) dp[j] += dp_prev[j - 1];
-            dp[j] %= q;
-            if (j < k) dp[j] += dp_prev[j + 1];
-            dp[j] %= q;
+            dp[i][j] = dp[i - 1][j];
+            if (j > 0) dp[i][j] += dp[i - 1][j - 1];
+            dp[i][j] %= MOD;
+            if (j < k) dp[i][j] += dp[i - 1][j + 1];
+            dp[i][j] %= MOD;
         }
-        // policz i zapisz wynik dla danej dlugosci i
-        int sum = 0;
-        for(int j = 0; j <= k; j++){
-            sum += dp[j];
-            sum %= q;
-        }
-        wynik[i] = sum;
+    }
 
-        // Przesun aktualny wektor na poprzedni
-        for(int j = 0; j <= k; j++){
-            dp_prev[j] = dp[j];
+    // Obliczenia wyniku
+    for (int i = 0; i < n; i++) {
+        wynik[i] = 0;
+        for (int j = 0; j <= k; j++) {
+            wynik[i] += dp[d[i]][j];
+            wynik[i] %= MOD;
         }
     }
 
     // Wyświetlenie wyniku
     for (int i = 0; i < n; i++) {
-        std::cout << wynik[d[i]] << " ";
+        std::cout << wynik[i] << " ";
     }
     std::cout << std::endl;
 
